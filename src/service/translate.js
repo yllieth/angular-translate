@@ -286,7 +286,7 @@ angular.module('pascalprecht.translate').provider('$translate', ['$STORAGE_KEY',
       $preferredLanguage = langKey;
     }
     return $preferredLanguage;
-  }
+  };
   /**
    * @ngdoc function
    * @name pascalprecht.translate.$translateProvider#translationNotFoundIndicator
