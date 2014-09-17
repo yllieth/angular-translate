@@ -1,6 +1,22 @@
 // Karma configuration
 
 module.exports = function (config) {
+
+  var AVAILABLE_TEST_SCOPES = {
+    'default': {
+      'angular/angular.js': 'bower_components/angular/angular.js'
+    },
+    'angular_1.3': {
+      'angular/angular.js': 'test_scopes/angular_1.3/bower_components/angular/angular.js'
+    }
+  };
+
+  var selectedScope = 'default';
+  if (process.env.TEST_SCOPE && AVAILABLE_TEST_SCOPES[process.env.TEST_SCOPE]) {
+    selectedScope = process.env.TEST_SCOPE;
+  }
+  console.log('Using TEST_SCOPE=' + selectedScope);
+
   config.set({
 
     basePath: '',
@@ -8,7 +24,7 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
 
     files: [
-      'bower_components/angular/angular.js',
+      AVAILABLE_TEST_SCOPES[selectedScope]['angular/angular.js'],
       'bower_components/ngMidwayTester/src/ngMidwayTester.js',
       'src/translate.js',
       'bower_components/angular-translate-interpolation-default/angular-translate-interpolation-default.js',
